@@ -3,15 +3,20 @@
 int main()
 {
     int n, k;
-    printf("Digite a quantidade de alunos:");
+    printf("Digite a quantidade de alunos: ");
     scanf("%d", &n);
     
-    printf("Digite a quantidade de provas:");
+    printf("Digite a quantidade de provas: ");
     scanf("%d", &k);
     
     int peso[k];
     int somaPesos = 0;
     float somaCadaProva[k];
+    
+    // Inicializa somaCadaProva com 0
+    for (int i = 0; i < k; i++) {
+        somaCadaProva[i] = 0; 
+    }
     
     // Entrando com os pesos das provas
     for(int i = 0; i < k; i++)
@@ -34,7 +39,7 @@ int main()
             float temp = 0; // temporária
             printf("[Aluno %d] Prova %d: ", aluno+1,nota+1);
             scanf("%f", &temp);
-            somaCadaProva[nota] = temp;
+            somaCadaProva[nota] += temp;
             temp = temp * peso[nota];
             somaNotas += temp;
         }
@@ -43,11 +48,11 @@ int main()
     
     for(int aritmética = 0; aritmética<k; aritmética++)
     {
-        somaCadaProva[aritmética] /= n; 
+        somaCadaProva[aritmética] /= k; 
     }
     
     for(int mostrar = 0; mostrar < k; mostrar++)
     {
-        printf("Nota da prova %d: %f", mostrar+1, somaCadaProva[mostrar]);
+        printf("Média da prova %d: %.2f\n", mostrar+1, somaCadaProva[mostrar]);
     }
 }
